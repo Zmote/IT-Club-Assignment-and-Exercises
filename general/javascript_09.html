@@ -5,6 +5,50 @@
     <title>Exercise 09</title>
 </head>
 <body>
+<label for="numberInput"> Number:</label>
+<input id="numberInput" type="number" value="2018">
+<label for="scaleInput"> Scale:</label>
+<input id="scaleInput" type="number" value="5">
+<button id="drawButton">Draw</button>
+<button id="drawReverseButton">Draw Reverse</button>
+<button id="startClockButton">Start Clock</button>
+<button id="stopClockButton">Stop Clock</button>
+<br>
+<br>
+<label for="output">Output:</label>
+<br>
+<textarea id="output" cols="268" rows="20" style="font-weight: bolder; font-size:2rem"></textarea>
 <script src="digital_clock.js"></script>
+<script>
+    document.getElementById("drawButton").addEventListener("click", function () {
+        let number = +document.getElementById("numberInput").value;
+        let scale = +document.getElementById("scaleInput").value;
+        document.getElementById("output").innerText = drawNumber(number, scale);
+    });
+    document.getElementById("drawReverseButton").addEventListener("click", function () {
+        let number = +document.getElementById("numberInput").value;
+        let scale = +document.getElementById("scaleInput").value;
+        document.getElementById("output").innerHTML = drawNumberReverse(number, scale);
+    });
+    let intervalHandler = null;
+    document.getElementById("startClockButton").addEventListener("click", function () {
+        if (intervalHandler != null) clearInterval(intervalHandler);
+        intervalHandler = setInterval(() => {
+                let scale = +document.getElementById("scaleInput").value;
+                let nowDate = new Date();
+                let hours = nowDate.getHours();
+                hours = "" + hours;
+                let minutes = nowDate.getMinutes() + "";
+                minutes = minutes < 10 ? "0" + minutes : "" + minutes;
+                let seconds = nowDate.getSeconds() + "";
+                seconds = seconds < 10 ? "0" + seconds : "" + seconds;
+                document.getElementById("output").innerText = drawNumber(Number(hours + minutes + seconds),scale);
+            },
+            500);
+    });
+    document.getElementById("stopClockButton").addEventListener("click", function () {
+      clearInterval(intervalHandler);
+    });
+</script>
 </body>
 </html>
