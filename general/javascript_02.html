@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 02</title>
+</head>
+<body>
+<script>
+    function reverse(input){
+        let reversed = "";
+        for(let index = input.length - 1; index >= 0; index--){
+            reversed = reversed + input[index];
+        }
+        return reversed;
+    }
+
+    function spaceWith(input, delimiter){
+        let spaced = "";
+        for(let index = 0; index < input.length; index++){
+            spaced = spaced + (input[index] + delimiter);
+        }
+        return spaced;
+    }
+
+    function alertNames(){
+        alert("firstname: " + firstname);
+        alert("lastname: " + lastname);
+
+    }
+
+    let firstname = prompt("Enter your first name");
+    let lastname = prompt("Enter your last name");
+
+    alertNames();
+
+    firstname = reverse(firstname);
+    lastname = reverse(lastname);
+
+    alertNames();
+
+    firstname = spaceWith(firstname, " ");
+    lastname = spaceWith(lastname, "@");
+
+    alertNames();
+</script>
+</body>
+</html>

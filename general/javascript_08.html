@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 8</title>
+</head>
+<body>
+<script>
+function drawTree(rowCount, delimiter) {
+    let line = "";
+    for (let i = 0; i < rowCount; i++) {
+        for (let j = 0; j < i; j++) {
+            line += delimiter;
+        }
+        line += "\n";
+    }
+    console.log(line);
+}
+drawTree(10, "*");
+console.log("-------------");
+drawTree(20, "O");
+console.log("-------------");
+drawTree(30, "+");
+console.log("-------------");
+</script>
+</body>
+</html>

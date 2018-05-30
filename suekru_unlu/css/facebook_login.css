@@ -1,0 +1,94 @@
+body{
+    margin: 0 0;
+}
+
+header {
+    display: flex;
+    height: 100px;
+    justify-content: space-around;
+    background: #435A94;
+}
+
+.headimg {
+    display: flex;
+    align-items: center;
+}
+
+.logo > img {
+    display: flex;
+    align-self: center;
+    width: 170px;
+}
+
+.login {
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+}
+
+.admail p{
+    margin:0;
+    padding:0;
+}
+
+.admail {
+    display:flex;
+    flex-direction:column;
+    color: white;
+}
+
+.admail > div:first-child{
+    margin-top:16px;
+}
+
+.code >  p:first-child{
+    margin-top:16px;
+}
+
+.butmail {
+    display: flex;
+    flex-direction: column;
+    width:150px;
+}
+.connexion{
+    margin-top:4px;
+}
+
+.oublier{
+    display: flex;
+    flex-direction: column;
+}
+
+.code p{
+    padding:0;
+    margin:0;
+}
+
+.code {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: white;
+}
+
+.Mot de passe {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.butcod {
+    display: flex;
+    flex-direction: column;
+}
+
+.butconx {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.connexion {
+    display: flex;
+    flex-direction: column;
+}

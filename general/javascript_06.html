@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maze</title>
+</head>
+<body>
+<div style="margin-left:40px;margin-bottom: 16px">
+    <span>Fuel: </span><div id="fuelArea"></div>
+</div>
+<label for="mazeArea">Maze</label>
+<textarea id="mazeArea" style="font-size:2rem" cols="60" rows="25"></textarea>
+<div style="display:inline-block">
+    <div>
+        <button id="upButton" onclick="moveUp()">Up</button>
+    </div>
+    <br>
+    <div>
+        <button id="leftButton" onclick="moveLeft()">Left</button>
+        <button id="downButton" onclick="moveDown()">Down</button>
+        <button id="rightButton" onclick="moveRight()">Right</button>
+    </div>
+    <br>
+    <div>
+        <button onclick="location.reload()">Restart</button>
+    </div>
+</div>
+<script>
+    let playerSymbol = "&#9951";
+    let freeCellSymbol = "&#9744";
+    let wallCellSymbol = "&#127876";
+    let targetSymbol = "&#9981";
+    let fuelSymbol = targetSymbol;
+    let size = 20;
+
+    function mazeToString(maze) {
+        let mazeString = "";
+        for (let i = 0; i < maze.length; i++) {
+            let row = "";
+            for (let j = 0; j < maze.length; j++) {
+                row += maze[i][j] + " ";
+            }
+            mazeString += row + "\n";
+        }
+        return mazeString;
+    }
+
+    function setupMaze(size) {
+        return {
+            board: Array(size).fill([]).map(x => Array(size).fill(freeCellSymbol)),
+            map: null,
+            player: {
+                x: 0,
+                y: 0,
+                fuel:size * 1.5,
+                moveToRight() {
+                    this.x += 1;
+                    this.fuel--;
+                },
+                moveToLeft() {
+                    this.x -= 1;
+                    this.fuel--;
+                },
+                moveUp() {
+                    this.y -= 1;
+                    this.fuel--;
+                },
+                moveDown() {
+                    this.y += 1;
+                    this.fuel--;
+                }
+            },
+            setPlayerPos(x, y) {
+                this.player.x = x;
+                this.player.y = y;
+            },
+            randomize() {
+                for (let i = 0; i < Math.floor((4 * size) + Math.random() * (size * size)); i++) {
+                    this.board[Math.floor(Math.random() * size)][Math.floor(Math.random() * size)] = wallCellSymbol;
+                }
+                this.board[Math.floor(Math.random() * size)][Math.floor(Math.random() * size)] = targetSymbol;
+            },
+            render() {
+                this.map = this.copyMaze(this.board);
+                this.map[this.player.y][this.player.x] = playerSymbol;
+            },
+            copyMaze(maze) {
+                let copy = [];
+                for (let i = 0; i < maze.length; i++) {
+                    copy.push([]);
+                    for (let j = 0; j < maze[i].length; j++) {
+                        copy[i].push(maze[i][j]);
+                    }
+                }
+                return copy;
+            },
+            toString() {
+                this.render();
+                return mazeToString(this.map != null ? this.map : this.board);
+            }
+        };
+    }
+
+    function renderArea() {
+        document.getElementById("mazeArea").innerHTML = maze.toString();
+        document.getElementById("fuelArea").innerHTML = fuelSymbol.repeat(maze.player.fuel);
+        if(maze.player.fuel === 0){
+            alert("You loose!");
+            initializeMaze();
+            renderArea();
+        }
+    }
+
+    function initializeMaze() {
+        maze = setupMaze(size);
+        maze.randomize();
+    }
+
+    function checkIsWall(x, y) {
+        return maze.map[y][x] === wallCellSymbol;
+    }
+
+    function checkIsTarget(x, y) {
+        return maze.map[y][x] === targetSymbol;
+    }
+
+    function moveUp() {
+        if (!checkIsWall(maze.player.x, maze.player.y - 1)) {
+            maze.player.moveUp();
+            if (checkIsTarget(maze.player.x, maze.player.y)) {
+                alert("You win!");
+                initializeMaze();
+            }
+            renderArea();
+        }
+    }
+
+    function moveDown() {
+        if (!checkIsWall(maze.player.x, maze.player.y + 1)) {
+            maze.player.moveDown();
+            if (checkIsTarget(maze.player.x, maze.player.y)) {
+                alert("You win!");
+                initializeMaze();
+            }
+            renderArea();
+        }
+    }
+
+    function moveRight() {
+        if (!checkIsWall(maze.player.x + 1, maze.player.y)) {
+            maze.player.moveToRight();
+            if (checkIsTarget(maze.player.x, maze.player.y)) {
+                alert("You win!");
+                initializeMaze();
+            }
+            renderArea();
+        }
+    }
+
+    function moveLeft() {
+        if (!checkIsWall(maze.player.x - 1, maze.player.y)) {
+            maze.player.moveToLeft();
+            if (checkIsTarget(maze.player.x, maze.player.y)) {
+                alert("You win!");
+                initializeMaze();
+            }
+            renderArea();
+        }
+    }
+
+    document.body.addEventListener("keyup", function (event) {
+        switch (event.key) {
+            case "ArrowRight":
+                moveRight();
+                break;
+            case "ArrowUp":
+                moveUp();
+                break;
+            case "ArrowLeft":
+                moveLeft();
+                break;
+            case "ArrowDown":
+                moveDown();
+                break;
+        }
+    });
+    initializeMaze();
+    renderArea();
+</script>
+</body>
+</html>

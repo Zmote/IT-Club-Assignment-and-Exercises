@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 07</title>
+</head>
+<body>
+<script>
+
+    function printM(length, conditionCallback) {
+        for (let sira = 0; sira < length; sira++) {
+            let satirIcerigi = "";
+            for (let sutun = 0; sutun < length; sutun++) {
+                if (conditionCallback(sira, sutun)) {
+                    satirIcerigi += "1";
+                } else {
+                    satirIcerigi += "0";
+                }
+            }
+            console.log(satirIcerigi);
+        }
+    }
+
+    function printMatrix(length) {
+        return printM(length, function (satir, sutun) {
+            return satir === sutun;
+        });
+    }
+
+    function printReverseMatrix(length) {
+        return printM(length, function (satir, sutun) {
+            return satir + sutun === length - 1;
+        });
+    }
+
+    printMatrix(10);
+    printReverseMatrix(5);
+
+</script>
+</body>
+</html>

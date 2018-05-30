@@ -1,0 +1,102 @@
+.user-info {}
+
+.user-info .header {
+    height: 95px;
+    background-color: var(--default-font-color);
+}
+
+.user-info .content {
+    display: flex;
+    padding: 5px;
+    height: 50px;
+}
+
+.user-info .content img {
+    position: relative;
+    top: -50px;
+    border-radius: 35px;
+    width: 73px;
+    height: 73px;
+}
+
+.user-info .statistics {
+    padding: 5px;
+}
+
+.user-info .statistics table {
+    width: 100%;
+}
+
+.user-info .statistics th {
+    font-size: 12px;
+    text-align: left;
+    color: #657786;
+}
+
+.user-info .statistics td {
+    color: var(--default-font-color);
+}
+
+.Trends {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 15px;
+}
+
+.For {
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+}
+
+.For>h3 p {
+    display: flex;
+    font-size: 18px;
+}
+
+.For>a {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 12px;
+    color: var(--default-font-color);
+}
+
+.ul {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.ul>ul>div>div>li {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.ul-2 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    height: 34px;
+    font-size: 68px;
+}
+.ul-2 {
+    display: flex;
+    font-size: 18px;
+}
+
+div>li {
+    display: flex;
+    list-style-type: none;
+    color: var(--default-font-color);
+}
+
+.li-2>li {
+    display: flex;
+    color: #657786;
+    font-size: 12px
+}

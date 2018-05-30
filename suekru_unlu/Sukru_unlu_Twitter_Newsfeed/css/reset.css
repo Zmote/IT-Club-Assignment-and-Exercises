@@ -1,0 +1,34 @@
+:root {
+    --main-bg-color: #e6ecf0; 
+    --header-bg-color: #ffffff;
+    --default-border-color: rgba(0,0,0,0.25);
+    --default-font-color: #1DA1F2;
+    --default-cursor: pointer;
+    --content-width: 1190px;
+    --side-section-width: 290px;
+    --stream-height:51px;    
+}
+
+* {
+    margin: 0px;
+    padding:0px; 
+    text-decoration: none;
+}
+
+html, body {
+    box-sizing: content-box;
+    font-family: Helvetica, sans-serif;
+    font-size: 1rem;
+    margin:0;
+    padding:0;
+}
+
+html{
+    height:100%;
+    background-color:var(--main-bg-color);
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
